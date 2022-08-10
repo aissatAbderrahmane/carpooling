@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Co-Voiturage</title>
+    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="style2.css">
+</head>
+<!--*********************************HEADER***********************************************-->
+<body>
+   <header id="HD">
+       <div id="menu">
+           <!--img src="img/miniLogo.png"/-->
+           <ul>
+               <li><a href="index.html">home</a> </li>
+               <li><a href="login.html">login</a></li>
+               <li><a href="inscrir.html">inscrit</a></li>
+               <li><a href="profile.html">profile</a></li>
+           </ul>
+       </div>
+         
+           
+       <!--div id="slid">
+          <img src="img/img1.jpg">
+          <img src="img/img2.jpg">
+          <img src="img/img3.jpg">
+          <img src="img/img4.jpg">
+           
+           <!--h2>welcome to my site.</h2>
+       </div -->
+     
+       
+   </header>
+    <form method="post" action="register.php?mode=inscrire&mode2=voyageur">
+   <div idvoy="form">
+    <p>Date : <input type="date" name="Date" ></p>
+    <p>Time : <input type="Time" name="Time" ></p>
+    <p>  ville    :   <input type="text" name="ville"></p>
+    <p>city :<input type="text" name="city" ></p>
+	<!--p>nb de place vide : <input type="var" id="nbplacevide" ></p-->
+	<p>ville darrive: <input type="text" name="darrive" ></p>
+   <input type="submit" value="inscr"/>
+
+
+ <!--
+    <p>sex :<select name="thelist" onChange="combo(this, 'theinput')">
+      <option>Homme</option>
+      <option>Famme</option>
+      </select>
+    </p>
+    <p>Fummer :<select name="thelist" onChange="combo(this, 'theinput')">
+      <option>--</option>
+      <option>Oui</option>
+      <option>Non</option>
+      </select>
+    </p>
+    <p>Ecoute Radio :<select name="thelist" onChange="combo(this, 'theinput')">
+      <option>--</option>
+      <option>Oui</option>
+      <option>Non</option>
+      </select>
+    </p>
+    <p>Discution :<select name="thelist" onChange="combo(this, 'theinput')">
+      <option>--</option>
+      <option>Oui</option>
+      <option>Non</option>
+      </select>
+    </p>
+    <p><input type="checkbox" id="cbsign" onchange="binaryChanged();">
+    </p>
+   
+      <!--form id="radio">
+        <fieldset>
+         <legend>Selecting elements</legend>
+        <p>
+           <label>Radio buttons</label>            
+            <input type = "radio"
+                 name = "radSize"
+                 id = "sizeSmall"
+                 value = "small"
+                 checked = "checked" />
+            <label for = "sizeSmall">small</label>
+            <input type = "radio"
+                 name = "radSize"
+                 id = "sizeMed"
+                 value = "medium" />
+            <label for = "sizeMed">medium</label>
+            <input type = "radio"
+                 name = "radSize"
+                 id = "sizeLarge"
+                 value = "large" />
+            <label for = "sizeLarge">large</label>
+         </p>       
+        </fieldset>     
+      </form-->
+      
+   
+
+  </div>
+ </form>
+
+</body>
+</html>

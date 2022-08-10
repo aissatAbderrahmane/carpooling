@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
+	<title> Hammoudi Abdelmadjid  </title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="./font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="./style.css">
-	 <script type="text/javascript" lang="javascript">
-		
-		function connexion(){
-			var DisableBody = document.createElement("div");
-			var	Login = document.createElement("div");
-			var Hei = document.body.offsetHeight, wid = document.body.offsetWidth;
-			
-			DisableBody.style.width = wid;
-			DisableBody.style.height = Hei;
-			DisableBody.style.background = "#000";
-			DisableBody.style.display = "block";
-			DisableBody.style.position = "absolute";
-			document.body.appendChild(DisableBody);
-			
-		}
-	 </script>
+	 <script type="text/javascript" lang="javascript" src="project.js"></script>
 </head>
-<body>
+    
+<body <?PHP if(isset($_GET["mode"]) && $_GET["mode"]=="map")  {  ?> onload="init();" <?PHP } ?> > 
     <div id="header">
        <img src="./logo.png" />
-	   <div id="header-links">
-		<a href="#" class="propos">Proposer un trajet</a>
-		<a href="#">inscription</a>
-		<a href="javascript:connexion();">connexion</a>
+	   <div id="header-links" <?PHP if(isset($_SESSION["lvl"]) && $_SESSION["lvl"] == 2) echo " style='margin-left:710px;' "; ?> >
+		<a href="home.html">Home</a>
+		<?PHP if(!isset($_SESSION['id'])){ ?>
+		<a href="regoindre.html">inscription</a>
+		<a href="javascript:connexion(document.body);">connexion</a>
+		 <?PHP }else{?>
+		<a href="ajouterTraject.html" >Proposer un trajet</a>
+		<a href="membre-<?PHP echo $Connected_mem; ?>.html" >Mon Compte</a>
+        <?PHP if($_SESSION["lvl"] == 2) { ?> <a href="adm.html">Administration</a> <?PHP } ?>
+		<a href="deconnexion.html">Deconnexion</a>
+		<?PHP }?>
 	   </div>
     </div>
-	<div id="second-head">	   
-	</div>
+    <?PHP
+    	if(!isset($_GET["mode"])){
+    ?>
+<iframe src="https://www.google.fr/maps/d/embed?mid=1Pee4TSL9zFDnDh6goaoisFMCoGc" width="100%" height="480"></iframe>
+
+    <?PHP
+    	}
+    ?>
 

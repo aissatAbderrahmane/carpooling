@@ -1,5 +1,5 @@
 </div>
-<div id="head-footer">
+<div id="head-footer" <?PHP if(isset($_GET['mode']) && ($_GET["mode"] == "inscription" || $_GET["mode"] == "cov" || ($_GET["mode"] == "membre" && isset($_GET["step"]) && $_GET["step"] == "edit") )  ) echo 'style="margin-top:300px;"' ?>>
 	<h2>Trouve ta fierté de route avec nous</h2>
 </div>
 <div id="footer">

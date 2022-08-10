@@ -1,0 +1,73 @@
+		<?PHP
+			$USER = $db->select("insp"," id='".$_GET["user"]."' ");
+			if($USER->num_rows == 0 ){
+				$main->div("l'utilisateur n'exist pas !","s","adm-members.html");
+			}else{
+			$USER_INFO = $db->getinfo($USER);
+		?>
+		<div id="general-form">
+		<form  method="POST" action="modifierUser-<?PHP echo $USER_INFO['id'] ;?>.html" >
+		<table  cellpadding="0" cellspacing="0">
+		<tr ><td colspan="2"> Modifictation des données de l'utilistauer : </td></tr>
+		<tr>
+		<td> Le Nom : </td>
+		<td> <input type="text" name="nom" value="<?PHP echo $USER_INFO['nom'];?>"/> </td>
+		</tr>
+		<tr>
+		<td>Le Prénom :</td>
+		<td> <input type="text" name="prenom" value="<?PHP echo $USER_INFO['prenom'];?>"/> </td>
+		</tr>
+		<tr>
+		<td> L'email :</td>
+		<td> <input type="text" name="email" value="<?PHP echo $USER_INFO['email'];?>"/> </td>
+		</tr>
+		<tr>
+		<td> Fumme :</td>
+		<td> 
+			<select name="fummeur" >
+
+				<?PHP if($USER_INFO['fummeur'] == 1){  ?>
+				<option value="1" >Fummeur</option>
+				<option value="0">Nom Fummeur</option>
+				<?PHP }elseif($USER_INFO['fummeur'] == 0){ ?>
+				<option value="0">Nom Fummeur</option>
+				<option value="1" >Fummeur</option>
+				<?PHP } ?>
+			</select>	
+		 </td>
+		</tr>
+		<tr>
+		<td> le radio :</td>
+		<td>
+			<select name="radio" >
+				<?PHP if($USER_INFO['radio'] == 1){  ?>
+				<option value="1" >Ecoute Le radio</option>
+				<option value="0">N'ecoute pas le radio</option>
+				<?PHP }elseif($USER_INFO['radio'] == 0){ ?>
+				<option value="0">N'ecoute pas le radio</option>
+				<option value="1" >Ecoute Le radio</option>
+				<?PHP } ?>
+			</select>
+		 </td>
+		</tr>
+		<tr>
+		<td> Discution :</td>
+		<td>
+			<select name="discution" >
+				<?PHP if($USER_INFO['dusc'] == 1){  ?>
+				<option value="1" >Aime discution</option>
+				<option value="0">N'aime pas discution</option>
+				<?PHP }elseif($USER_INFO['dusc'] == 0){ ?>
+				<option value="0">N'aime pas discution</option>
+				<option value="1" >Aime discution</option>
+				<?PHP } ?>
+			</select>
+		 </td>
+		</tr>
+		<tr>
+		<td colspan="2"><input type="submit" value="modifier"/></td>
+		</tr>
+	</table>
+		</form>
+		</div>
+	<?PHP } ?>	

@@ -1,0 +1,43 @@
+		<?PHP
+			$USER = $db->select("insp"," id='".$_GET["user"]."' ");
+			if($USER->num_rows == 0 ){
+				$main->div("l'utilisateur n'exist pas !","s","adm-members.html");
+			}else{
+			$USER_INFO = $db->getinfo($USER);
+		?>
+		<table  id="affmem" cellpadding="0" cellspacing="0">
+		<tr class="titaffmem"><td colspan="2"> Information sur l'utilisteur : <?PHP echo $USER_INFO['nom'];?> </td></tr>
+		<tr class="titaffmem"><td > Trajects </td> <td> Voyages </td></tr>
+		<tr>
+		<td> 
+			<?PHP 
+				$Trajects = $db->select("cond","id='".$USER_INFO["id"]."' ");
+				if($Trajects->num_rows != 0){
+					while($TrajectsVal = $db->getinfo($Trajects)){
+						if($date < $TrajectsVal["date"]) $style = "green";
+						else if($date  == $TrajectsVal["date"] && $time+5 < $TrajectsVal["time"])  $style = "yellow";
+						else $style = "red";
+						echo "<span class='".$style."'> <a href='trajectinfo-".$TrajectsVal["id_cond"].".html'>".$TrajectsVal["ville"]."==> ".$TrajectsVal["ville_arriver"]."</span>";
+					}
+				}else echo "<span class='yellow'> pas du traject pour le moment.</span>";
+			?>
+		</td>
+		<td> 
+			<?PHP 
+				$Voyages = $db->select("voyageurs","id_voyageur='".$USER_INFO["id"]."' ");
+				if($Voyages->num_rows != 0){
+					while($VoyagesVal = $db->getinfo($Voyages)){
+							$trj = $db->select("cond", "id_cond='".$VoyagesVal["id_condiction"]."' ");
+							$trj_info = $db->getinfo($trj);
+						if($date < $VoyagesVal["date"]) $style = "green";
+						else if($date  == $VoyagesVal["date"] && $time+5 < $VoyagesVal["time"])  $style = "yellow";
+						else $style = "red";
+						echo "<span class='".$style."'> <a href='trajectinfo-".$VoyagesVal["id_condiction"].".html'>".$trj_info["ville"]."==> ".$trj_info["ville_arriver"]."</span>";
+					}
+				}else echo "<span class='yellow'> pas du voyage pour le moment.</span>";
+			?>
+		</td>
+		</tr>
+	</table>
+		
+	<?PHP } ?>	

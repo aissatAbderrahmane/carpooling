@@ -1,0 +1,154 @@
+	<?PHP 
+	$infoMember = $main->member($_GET["id"]);
+	switch(isset($_GET["step"]) ? $_GET["step"] : ""){
+	case "":
+	 ?>
+	
+	<div id="membre-head">
+		<table id="affmem" cellpadding="1" cellspacing="1">
+			<tr class="membreInf">
+				<td class="membreInf" >Nom :</td>
+				<td>
+				<?PHP echo $infoMember["nom"]; ?>
+				</td>
+			</tr>
+			<tr class="membreInf">
+				<td class="membreInf" >Prenom :</td>
+				<td>
+				<?PHP echo $infoMember["prenom"]; ?>
+				</td>
+			</tr>
+			<tr class="membreInf">
+				<td class="membreInf" >Email :</td>
+				<td>
+				<?PHP echo $infoMember["email"]; ?>
+				</td>
+			</tr>
+			<tr class="membreInf">
+				<td class="membreInf" >Caractere :</td>
+				<td>
+				<?PHP 
+				if($infoMember["fummeur"] == 1)	echo "Fumeur <br />";
+				else echo "Non Fumeur <br />";
+				if($infoMember["radio"] == 1) echo "Ecoute le radio ou la music <br />";
+				else echo "N'ecoute pas radio ou music <br />";
+				if($infoMember["dusc"] == 1)	echo "Aime Discution <br />";
+				else echo "N'aime pas discution <br />";
+				?>
+				</td>
+			</tr>	
+			<?PHP if(isset($_SESSION['id']) && isset($_GET["id"]) && $Connected_mem == $_GET["id"]){ ?> 
+			<tr class="membreInf"><td colspan="2"><a href="editProfile-<?PHP echo $Connected_mem; ?>.html" >Modifier le profile</a></td></tr>
+		<?PHP } ?>
+		</table>
+	</div>
+
+<?PHP 
+	break;
+	case "edit":
+?>
+		<?PHP
+			$USER = $db->select("insp"," id='".$_GET["id"]."' ");
+			if($USER->num_rows == 0 ){
+				$main->div("le compte n'exist pas !","s","home.html");
+			}else{
+			$USER_INFO = $db->getinfo($USER);
+		?>
+		<div id="general-form">
+		<center>
+		<form  method="POST" action="modifierProfile-<?PHP echo $USER_INFO['id'] ;?>.html" >
+		<table  cellpadding="0" cellspacing="0">
+		<tr ><td colspan="2"> Modifictation des données du profile : </td></tr>
+		<tr>
+		<td> Le Nom : </td>
+		<td> <input type="text" name="nom" value="<?PHP echo $USER_INFO['nom'];?>"/> </td>
+		</tr>
+		<tr>
+		<td>Le Prénom :</td>
+		<td> <input type="text" name="prenom" value="<?PHP echo $USER_INFO['prenom'];?>"/> </td>
+		</tr>
+		<tr>
+		<td> L'email :</td>
+		<td> <input type="text" name="email" value="<?PHP echo $USER_INFO['email'];?>"/> </td>
+		</tr>
+		<tr>
+		<td> Fumme :</td>
+		<td> 
+			<select name="fummeur" >
+
+				<?PHP if($USER_INFO['fummeur'] == 1){  ?>
+				<option value="1" >Fummeur</option>
+				<option value="0">Nom Fummeur</option>
+				<?PHP }elseif($USER_INFO['fummeur'] == 0){ ?>
+				<option value="0">Nom Fummeur</option>
+				<option value="1" >Fummeur</option>
+				<?PHP } ?>
+			</select>	
+		 </td>
+		</tr>
+		<tr>
+		<td> le radio :</td>
+		<td>
+			<select name="radio" >
+				<?PHP if($USER_INFO['radio'] == 1){  ?>
+				<option value="1" >Ecoute Le radio</option>
+				<option value="0">N'ecoute pas le radio</option>
+				<?PHP }elseif($USER_INFO['radio'] == 0){ ?>
+				<option value="0">N'ecoute pas le radio</option>
+				<option value="1" >Ecoute Le radio</option>
+				<?PHP } ?>
+			</select>
+		 </td>
+		</tr>
+		<tr>
+		<td> Discution :</td>
+		<td>
+			<select name="discution" >
+				<?PHP if($USER_INFO['dusc'] == 1){  ?>
+				<option value="1" >Aime discution</option>
+				<option value="0">N'aime pas discution</option>
+				<?PHP }elseif($USER_INFO['dusc'] == 0){ ?>
+				<option value="0">N'aime pas discution</option>
+				<option value="1" >Aime discution</option>
+				<?PHP } ?>
+			</select>
+		 </td>
+		</tr>
+		<tr>
+		<td colspan="2"><input type="submit" value="modifier"/></td>
+		</tr>
+	</table>
+		</form>
+		</center>
+		</div>
+
+	<?PHP } ?>	
+
+<?PHP		
+	break;
+	case "modifier": 
+		if(isset($_GET["id"])){
+				$_NOM = $db->real_escape_string($_POST["nom"]);
+				$_PRENOM = $db->real_escape_string($_POST["prenom"]);
+				$_EMAIL = $db->real_escape_string($_POST["email"]);
+				$_FUMMEUR = $db->real_escape_string($_POST["fummeur"]);
+				$_RADIO = $db->real_escape_string($_POST["radio"]);
+				$_DISCUTION = $db->real_escape_string($_POST["discution"]);
+				
+				$select_user = $db->select("insp", "id='".$_GET["id"]."' ");
+				if($select_user->num_rows == 1){
+					$user = $db->getinfo($select_user);
+					$db->update("insp","nom='".$_NOM."'  "," id = '".$_GET["id"]."' ");
+					$db->update("insp","prenom='".$_PRENOM."'  "," id = '".$_GET["id"]."' ");
+					$db->update("insp","email='".$_EMAIL."'  "," id = '".$_GET["id"]."' ");
+					$db->update("insp","fummeur='".$_FUMMEUR."'  "," id = '".$_GET["id"]."' ");
+					$db->update("insp","radio='".$_RADIO."'  "," id = '".$_GET["id"]."' ");
+					$db->update("insp","dusc='".$_DISCUTION."'  "," id = '".$_GET["id"]."' ");
+					$main->div("Votre Modification a été effectuer !","t","membre-".$_GET["id"].".html");
+
+				}else $main->div("le compte n'exist pas !","f","membre-".$_GET["id"].".html");
+
+
+		}else $main->div("le compte n'exist pas !","f","membre-".$_GET["id"].".html");
+	break;
+} ?>

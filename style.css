@@ -1,8 +1,12 @@
-﻿body {
+﻿html, body{
+	height:100%;
+}
+body {
     margin : 0 0 0 0 ;
     padding:0 0 0 0 ;
     font-family: tahoma;
 	background:#fbfcfc;
+
 }
 #header{
 	background:#1e88e5;
@@ -12,14 +16,13 @@
 	width:100%;
 	height:90px;
 	padding-top:10px;
+	
 }
 #header img{
 	position: relative;
 	float:left;
 }
 #header-links{
-	position:relative;
-	float:left;
 	margin-left:750px;
 	padding-top:20px;
 }
@@ -36,14 +39,14 @@
 	border-bottom:2px solid #fff;
 	
 }
-#header-links a.propos,#body-head-search input[type=submit]{
+#header-links a.propos,#body-head-search input[type=submit],#general-form input[type=submit]{
 	background:#fff;
 	color:#1e88e5;
 	border-radius: 15px;
 	padding-left:30px;
 	padding-right:30px;
 }
-#header-links a.propos:hover,#body-head-search input[type=submit]:hover{
+#header-links a.propos:hover,#body-head-search input[type=submit]:hover,#general-form input[type=submit]:hover{
 	background:#1565c0;
 	color:#fff;
 }
@@ -75,15 +78,15 @@
 	color:#777;
 	margin-left:120px;
 }
-#body-head-search form{
+#body-head-search form,#general-form form{
 	margin-left:200px;
 }
-#body-head-search input{
+#body-head-search input,#general-form input,#general-form select,#general-form select option{
 	border:1px solid #96caf7;
 	padding:8px;
 	margin:10px;
 }
-#body-head-search input[type=text]{
+#body-head-search input[type=text],#general-form input[type=text]{
 	font-weight:bold;
 	background:#fff;
 	color:#96caf7;
@@ -91,7 +94,7 @@
 	height:30px;
 	display:inline-block;
 }
-#body-head-search input[type=text]:hover{
+#body-head-search input[type=text]:hover,#general-form input[type=text]:hover,#general-form select:hover{
 	
 	background:#fcfcfc;
 }
@@ -110,6 +113,7 @@
 	height:200px;
 	background:url('./headFooter.png') #fff;
 	text-align:center;
+
 }
 #head-footer h2{
 	color:#0f55a4;
@@ -123,3 +127,252 @@
 	height:100px;
 	background:#1e88e5;
 }
+#condiction table{
+	border:1px solid #EAEAEA;
+	color:#1e88e5;
+	background:#fff;
+	size:16px;
+	text-align: center;
+}
+#head-cond td{
+	border:1px solid #96caf7;
+	color:#555;
+	font-weight: bold;
+	padding:4px;
+}
+#colum-cond td{
+	padding:4px;
+	color:#000;
+	border:1px solid #EEE;
+}
+
+#BoxValues{
+	display:block;
+	width:auto;
+	height:auto;
+	padding:3px;
+	color:#555;
+	font-size:15px;
+	font-weight:none;
+}
+#BoxValues-title{
+	font-weight:bold;
+	color:#1e88e5;
+}
+
+#idmHead{
+	background : #2364A3;
+	border-bottom:2px solid #1F466C;
+	color:#fff;
+	font-size:14px;
+	font-weight: bold;
+	position:relative;
+	top:0px;
+	width:100%;
+	height:45px;
+	float:left;
+}
+#idmHead a{
+	text-decoration: none;
+	font-weight:none;
+	background:#2364A3;
+	display:inline-block;
+	margin-left:1px;
+	padding:13.7px;
+	
+	color:#fff;
+}
+#idmHead a:hover{
+	background:#1F466C;
+}
+#idmcont {
+	background : #E8E8E8;
+	color:#333;
+	position:relative;
+	top:0px;
+	width:98%;
+	height:auto;
+	float:left;
+	overflow: hidden;
+	padding:1%;
+
+}
+#affmem{
+	width:100%;
+	background:#fff;
+	text-align:center;
+	color:#000;
+	border:1px solid #fff;
+}
+#affmem tr.titaffmem {
+	background:#1E90FF;
+}
+#affmem .titaffmem td{
+	padding:2px;
+	color:#fff;
+	font-weight:bold;
+	font-size:14px;
+	font-family:comic;
+}
+#affmem .valtitmem td{
+	padding-top:4px;
+	padding-bottom:4px;
+	border-bottom:1px solid #E7E7E7;
+		
+}
+table#traject{
+	width:100%;
+	margin-top:10px;
+}
+#traject tr.title{
+	height:35px;
+	padding:4px;
+	background:#287DD0;
+	color:#fff;
+	font-weight:bold;
+	font-family: tahoma;
+}
+#traject tr.title td{
+	padding:2px;
+	text-align:center;
+}
+#traject tr.content{
+	background:#fff;
+	height:65px;
+}
+#traject tr.content td{
+	color:#222;
+	text-align:center;
+	border-bottom: 1px solid #E0E0E0;
+	background:#fff;
+
+}
+#traject tr.content td span{
+	color:#287DD0;
+}
+ #green,#yellow,  #white, #red{
+	display:inline-block;
+	padding:10px;
+	border:1px solid;
+	float:right;
+	margin:4px;
+}
+#green{ background:#B0FFAF; color:#1BBE19; border-color:#1BBE19;}
+#yellow{ background:#FFFECC; color:#CFCD00; border-color:#F6F429;}
+#white{ background:#fff; color:#000; border-color:#ECECEC;}
+.green{ background:#B0FFAF; color:#1BBE19; border-color:#1BBE19;}
+.green,.yellow,  .white, .red{
+	display:inline-block;
+	padding:10px;
+	border:1px solid;
+	margin:8px;
+	width:500px;
+
+}
+.yellow{ background:#FFFECC; color:#CFCD00; border-color:#F6F429;}
+.white{ background:#fff; color:#000; border-color:#ECECEC;}
+.red{ background:#F15858; color:#BB1313; border-color:#F01717;}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 40px;
+  height: 40px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+#box-form{
+	background:#4C9CE2;
+	color:#fff;
+	border:1px solid #fff;
+	border-radius: 8px;
+	width:auto;
+	height:120px;
+	padding:30px;
+	position :fixed;
+    top:0px;
+    left:360px;
+    z-index:1000;
+}
+#box-form input{
+	background:#E0E4E5;
+	color:#1e88e5;
+	border:1px solid #fff;
+	margin:4px;
+	border-radius: 4px;
+	padding:8px;
+	font-weight: bold;
+}
+#box-form input:hover{
+	background:#fff;
+
+}
+#LogBox{
+	width:600px;
+}
+#dsb_body{
+
+	background :#000;
+	position :fixed;
+	opacity :0.5;
+    width:100%;
+    height:100%;
+    top:0px;
+    left:0px;
+    z-index:1000;
+}
+#NewBox {
+	border-radius: 10px;
+	background :#fff;
+	position :fixed;
+    width:50%;
+    height:auto;
+    top:30%;
+    left:25%;
+    padding:20px;
+    z-index:1000;
+}
+a{
+	text-decoration:none;
+	color:#1e88e5;
+}
+a:hover{
+	color:#555;
+}
+#membre-head {
+	position:relative;
+	float:left;
+	width:90%;
+	left:5%;
+	border:1px solid #CACACA;
+	background:#fff;
+	height:auto;
+
+}
+
+#membre-head tr.membreInf {
+	background:#f1f1f1;
+}
+#membre-head td.membreInf{
+	padding:2px;
+	color:#fff;
+	font-weight:bold;
+	font-size:14px;
+	font-family:comic;
+	background:#1E90FF;
+}
+
+#trajectFind #montant-green{color:#1BBE19;}
+#trajectFind #montant-yellow{ color:#CFCD00; }
+#trajectFind #montant-white{  color:#000; }

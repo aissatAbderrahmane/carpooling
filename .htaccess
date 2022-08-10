@@ -1,0 +1,36 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^home\.html$ /prj/www/index.php [L]
+RewriteRule ^connexion\.html$ /prj/www/cnx.php [L]
+RewriteRule ^deconnexion\.html$ /prj/www/index.php?mode=deconnexion [L]
+RewriteRule ^ajouterTraject\.html$ /prj/www/index.php?mode=cov [L]
+RewriteRule ^inscrieTraject\.html$ /prj/www/index.php?mode=inscrire&step=condicteur [L]
+RewriteRule ^ajouterVoyageur\.html$ /prj/www/index.php?mode=voy [L]
+RewriteRule ^TrouverTraject\.html$ /prj/www/index.php?mode=trouverTRJ [L]
+RewriteRule ^inscrieVoyageur-([0-9]+)\.html$ /prj/www/index.php?mode=inscrire&step=voyageur&id=$1 [L]
+RewriteRule ^membre-([0-9]+)\.html$ /prj/www/index.php?mode=membre&id=$1 [L]
+RewriteRule ^map-([0-9]+)\.html$ /prj/www/index.php?mode=map&id=$1 [L]
+RewriteRule ^deleteVoyageur-([0-9]+)\.html$ /prj/www/index.php?mode=inscrire&step=delvoyageur&id=$1 [L]
+RewriteRule ^regoindre\.html$ /prj/www/index.php?mode=inscription [L]
+RewriteRule ^inscription\.html$ /prj/www/index.php?mode=inscrire&step=membre [L]
+RewriteRule ^editProfile-([0-9]+)\.html$ /prj/www/index.php?mode=membre&id=$1&step=edit [L]
+RewriteRule ^modifierProfile-([0-9]+)\.html$ /prj/www/index.php?mode=membre&id=$1&step=modifier [L]
+RewriteRule ^adm\.html$ /prj/www/admin.php [L]
+RewriteRule ^editUser-([0-9]+)\.html$ /prj/www/admin.php?adm=members&mode=edit&user=$1 [L]
+RewriteRule ^lockUser-([0-9]+)\.html$ /prj/www/admin.php?adm=members&mode=lock&user=$1 [L]
+RewriteRule ^unlockUser-([0-9]+)\.html$ /prj/www/admin.php?adm=members&mode=unlock&user=$1 [L]
+RewriteRule ^deleteUser-([0-9]+)\.html$ /prj/www/admin.php?adm=members&mode=delete&user=$1 [L]
+RewriteRule ^infoUser-([0-9]+)\.html$ /prj/www/admin.php?adm=members&mode=info&user=$1 [L]
+RewriteRule ^banneUser-([0-9]+)\.html$ /prj/www/admin.php?adm=members&mode=banne&user=$1 [L]
+RewriteRule ^modifierUser-([0-9]+)\.html$ /prj/www/admin.php?adm=members&mode=modifier&user=$1 [L]
+RewriteRule ^adm-members\.html$ /prj/www/admin.php?adm=members [L]
+RewriteRule ^adm-voyageurs\.html$ /prj/www/admin.php?adm=voyageurs [L]
+RewriteRule ^adm-trajects\.html$ /prj/www/admin.php?adm=trajects [L]
+RewriteRule ^LvlUpUser-([0-9]+)\.html$ /prj/www/admin.php?adm=members&mode=lvlUP&user=$1 [L]
+RewriteRule ^LvlDownUser-([0-9]+)\.html$ /prj/www/admin.php?adm=members&mode=lvlDOWN&user=$1 [L]
+RewriteRule ^DelVoyUser-([0-9]+)-([0-9]+)\.html$ /prj/www/admin.php?adm=voyageurs&mode=delete&user=$1&traject=$2 [L]
+RewriteRule ^DelTraject-([0-9]+)\.html$ /prj/www/admin.php?adm=trajects&mode=delete&traject=$1 [L]
+ErrorDocument 404 '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/><title>404 - File or directory not found.</title><style type="text/css"> body{margin:0;font-size:.7em;font-family:Verdana, Arial, Helvetica, sans-serif;background:#EEEEEE;}fieldset{padding:0 15px 10px 15px;} h1{font-size:2.4em;margin:0;color:#FFF;}h2{font-size:1.7em;margin:0;color:#CC0000;} h3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} #header{width:96%;margin:0 0 0 0;padding:6px 2% 6px 2%;font-family:"trebuchet MS", Verdana, sans-serif;color:#FFF;background-color:#555555;}#content{margin:0 0 0 2%;position:relative;}.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}</style></head><body><div id="header"><h1>Server Error</h1></div><div id="content"><div class="content-container"><fieldset><h2>404 - File or directory not found.</h2><h3>The resource you are looking for might have been removed, had its name changed, or is temporarily unavailable.</h3></fieldset></div></div></body></html>'
+ErrorDocument 500 '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/><title>500 - Server Error.</title><style type="text/css"> body{margin:0;font-size:.7em;font-family:Verdana, Arial, Helvetica, sans-serif;background:#EEEEEE;}fieldset{padding:0 15px 10px 15px;} h1{font-size:2.4em;margin:0;color:#FFF;}h2{font-size:1.7em;margin:0;color:#CC0000;} h3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} #header{width:96%;margin:0 0 0 0;padding:6px 2% 6px 2%;font-family:"trebuchet MS", Verdana, sans-serif;color:#FFF;background-color:#555555;}#content{margin:0 0 0 2%;position:relative;}.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}</style></head><body><div id="header"><h1>Server Error</h1></div><div id="content"><div class="content-container"><fieldset><h2>500 - Server Error.</h2><h3>Server Error , please retry again .</h3></fieldset></div></div></body></html>'
+

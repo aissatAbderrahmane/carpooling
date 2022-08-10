@@ -1,0 +1,48 @@
+<center>
+   <div id="general-form">
+   <form method="post" action="inscription.html">
+    <table>
+   <tr>  
+    <td>Firstname : </td><td><input type="text" name="firstname" />    </td>
+    </tr>
+    <td>Lastname : </td><td><input type="text" name="lastname" />    </td>
+    </tr>
+    <td>  E-mail    :   </td><td><input type="email" name="user_email" />    </td>
+    </tr>
+    <td>password :</td><td><input type="password" name="password" />    </td>
+    </tr>
+    <td>sex :</td><td><select name="thelist1" onChange="combo(this, 'theinput')">
+      <option value="Homme">Homme</option>
+      <option value="Famme">Famme</option>
+      </select>
+        </td>
+    </tr>
+    <td>Fummer :</td><td><select name="thelist2" onChange="combo(this, 'theinput')">
+      <option>--</option>
+      <option value="1">Oui</option>
+      <option value="0">Non</option>
+      </select>
+        </td>
+    </tr>
+    <td>Ecoute Radio :</td><td><select name="thelist3" onChange="combo(this, 'theinput')">
+      <option>--</option>
+      <option value="1">Oui</option>
+      <option value="0">Non</option>
+      </select>
+        </td>
+    </tr>
+    <td>Discution :</td><td><select name="thelist4" onChange="combo(this, 'theinput')">
+      <option>--</option>
+      <option value="1">Oui</option>
+      <option value="0">Non</option>
+      </select>
+        </td>
+    </tr>
+    <td><input type="checkbox" name="cbsign" onchange="binaryChanged();">
+	<input type="submit" value="inscrire"/>
+        </td>
+    </tr>
+ </table>
+ </form>
+  </div>
+</center>

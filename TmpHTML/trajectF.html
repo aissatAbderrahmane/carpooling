@@ -1,0 +1,133 @@
+    <script type="text/javascript">
+    	var result = document.getElementById("result");
+    </script>
+<div id="trajectFind">
+		<?PHP
+			$VILLE = $db->real_escape_string($_POST["ville"]);
+			$VILLE_ARRV = $db->real_escape_string($_POST["ville_arv"]);
+			$VILLE_DATE = $db->real_escape_string($_POST["ville_date"]);
+			if($VILLE_DATE < $date){
+				$main->div("un traject du pasée n'exist pas !","s","home.html");
+			}else{
+			if(isset($VILLE) and isset($VILLE_ARRV) and isset($VILLE_DATE) ){
+			$trj = $db->select("cond","date='".$VILLE_DATE."' and ville='".$VILLE."' and ville_arriver='".$VILLE_ARRV."'  ");
+			if($trj->num_rows == 0){
+				$main->div("Traject indisponible","s","home.html");
+				
+			}else{
+				
+		 	if(isset($_SESSION["id"])){
+		 	?>
+		 	<span id="green">Préferrable</span>
+		 	<span id="yellow">Par choix</span>
+		 	<span id="white">inPreferrable( mais Par choix )</span>
+		 	<?PHP
+		 	}
+		 ?>
+	<table id="traject" cellpadding="0" cellspacing="0">
+		 <tr class="title">
+			<td> le condicteur </td>
+			<td> la ville </td>
+			<td> la ville d'arriver</td>
+			<td> la date</td>
+			<td> place qui reste</td>
+			<?PHP if(isset($_SESSION["id"])) { ?> 
+				<td> le temp </td>
+				<td> le montant </td>
+				<td> les voyageurs </td>
+				<td></td>
+			<?PHP } ?>
+		</tr>
+		<?PHP
+			while($valtrj = $db->getinfo($trj)){
+
+		 	if(isset($_SESSION["id"])){
+		 		$style = $main->verifType($valtrj["id"],$_SESSION["fume"],$_SESSION["rad"],$_SESSION["desc"]);
+		 	}
+		 
+		 ?>
+		 <tr class="content"  >
+		 	<td <?PHP if(isset($_SESSION["id"])) echo $style;?>> <span><?PHP 
+		 			$_nom = $main->member($valtrj["id"],"nom");
+		 			$_prenom = $main->member($valtrj["id"],"prenom");
+		 			echo $_nom." ".$_prenom;
+		 	 ?></span></td>
+			<td <?PHP if(isset($_SESSION["id"])) echo $style;?>> <?PHP echo $valtrj["ville"]; ?></td>
+			<td <?PHP if(isset($_SESSION["id"])) echo $style;?>> <?PHP echo $valtrj["ville_arriver"]; ?></td>
+			<td <?PHP if(isset($_SESSION["id"])) echo $style;?>> <?PHP echo $valtrj["date"]; ?></td>
+			<td <?PHP if(isset($_SESSION["id"])) echo $style;?>> <?PHP echo $valtrj["rest"]; ?></td>
+			<?PHP if(isset($_SESSION["id"])) { ?> 
+				<td <?PHP if(isset($_SESSION["id"])) echo $style;?>> <?PHP echo $valtrj["time"]; ?></td>
+				<td <?PHP echo $style;?>> <?PHP 
+						if($valtrj["montant"] <= 100){
+						?>
+							<span id="montant-green"><?PHP echo $valtrj["montant"];?></span>
+						<?PHP
+						}else if($valtrj["montant"]  > 100 && $valtrj["montant"] <= 500){
+						?>
+							<span id="montant-yellow"><?PHP echo $valtrj["montant"];?></span>
+						<?PHP
+						}else { ?> <span id="montant-white"><?PHP echo $valtrj["montant"];?></span>	
+						<?PHP } ?>
+				 DA </td>
+				<td <?PHP echo $style;?>> <?PHP 
+						$aff_voy = $db->select("voyageurs","id_condiction = '".$valtrj["id_cond"]."'");
+						if($aff_voy->num_rows != 0){
+							while($trag_voy = $db->getinfo($aff_voy)){
+								?>
+									<a href="membre-<?PHP echo $trag_voy['id_voyageur'];?>.html">
+										<?PHP echo $main->member($trag_voy['id_voyageur'],"nom");?>
+									</a>
+								<?PHP
+							}
+						}else echo" pas de voyageurs";
+				 ?>  </td>
+				<td <?PHP echo $style;?> >
+	<?PHP 
+	if($main->TrjExistDay($valtrj["id_cond"],$Connected_mem,$valtrj["date"]) == false){
+		
+		$ext_voy = $main->existTraj("voyageur",$valtrj["id_cond"],$Connected_mem);
+		$ext_cond = $main->existTraj("condicteur",$valtrj["id_cond"],$Connected_mem);
+	if($valtrj["rest"] > 0 && ($ext_voy == false && $ext_cond == false)){ 
+		
+	?>
+	<a href='inscrieVoyageur-<?PHP echo $valtrj["id_cond"]; ?>.html
+	'>
+	<img src="IMG/Add.png" /></a>
+	<?PHP } ?>
+	<?PHP if($Connected_mem != $valtrj["id"] && $ext_voy == true) {?><a href='deleteVoyageur-<?PHP echo $valtrj["id_cond"]; ?>.html
+	'><img src="IMG/false.png" /></a><?PHP } 
+	} ?>
+	<?PHP  
+		$select_cond = $db->select("insp"," id = '".$valtrj["id"]."' ");
+		$info_cond = $db->getinfo($select_cond);
+	?>
+	
+	<a href="javascript:createBox(document.body,{
+		'Nom':'<?PHP echo $info_cond["nom"]; ?>',
+		'Prenom':'<?PHP echo $info_cond["prenom"]; ?>',
+		'Email':'<?PHP echo $info_cond["email"]; ?>',
+		'Sexe':'<?PHP echo $info_cond["sexe"]; ?>',
+		'Caracteres':'<?PHP 
+			if($info_cond["fummeur"] == 1)	echo "Fumeur,";else echo "Non Fumeur,";
+			if($info_cond["radio"] == 1) echo "Ecoute le radio ou la music ,";else echo "N\'ecoute pas radio ou music,";
+			if($info_cond["dusc"] == 1)	echo "Aime Discution.";else echo "N\'aime pas discution.";
+		?>',
+		'traject': '<?PHP  echo "<a href=\'map-".$valtrj["id_cond"].".html\'>Voir le traject</a> "; ?>'
+	});"><img src="IMG/info.png" /></a>
+				</td>
+			<?PHP } ?>
+		</tr>
+		
+		<?PHP
+			}
+		 ?>		
+		</table>		
+		<?PHP
+			}
+			}else $main->div("il faut donnée tout les valeurs.","f","home.html");
+		}
+		 ?>
+
+
+</div>

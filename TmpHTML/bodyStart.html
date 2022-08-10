@@ -2,10 +2,10 @@
 		<h2>En Voiture !</h2>
 		<h3>Touver la Bon route, les Bons compagnons , et reduiser votre montant.</h3>
 		<div id="body-head-search">
-			<form>
-				<input type="text" name="StartWat" size="30" Value="Point Du Départ"/>
-				<input type="text" name="EndWau"  size="30" Value="Point D'arrivé"/>
-				<input type="text" name="Date"  size="30" Value="Date" />
+			<form method="POST" action="TrouverTraject.html">
+				<input type="text" name="ville" size="30" onclick="this.value='';" Value="Point Du Départ"/>
+				<input type="text" name="ville_arv"  onclick="this.value='';"size="30" Value="Point D'arrivé"/>
+				<input type="text" name="ville_date"  onclick="this.value='';"size="30" Value="jour-mois-année" />
 				<input type="submit" value="Trouver moi un traject"/>
 			</form>
 		</div>
